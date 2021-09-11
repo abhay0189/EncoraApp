@@ -1,0 +1,63 @@
+<div class="dashboard">
+  <h4>Select Company</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Company</mat-label>
+    <mat-select (selectionChange)="companyDropdownChange($event.value)">
+      <mat-option *ngFor="let company of companies" [value]="company.id">
+        {{ company.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="showDetails">
+    <section class="edit-section">
+      <mat-card>
+        <form class="example-form" [formGroup]="companyForm" autocomplete="off">
+          <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutAlign="flex-start"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0"
+          >
+            <div
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign="space-evenly end"
+              fxLayoutGap="10px"
+              fxLayoutGap.xs="0"
+            >
+              <!-- <div fxFlex>
+                <img [src]="logo" class="edit-img" />
+              </div> -->
+              <div fxFlex>
+                <mat-form-field>
+                  <mat-label>Company Name</mat-label>
+                  <input
+                    matInput
+                    readonly
+                    placeholder="Company Name"
+                    formControlName="name"
+                    autocomplete="disabled"
+                  />
+                </mat-form-field>
+              </div>
+              <div fxFlex>
+                <mat-form-field style="display: block">
+                  <mat-label>Company Description</mat-label>
+                  <textarea
+                    readonly
+                    matInput
+                    placeholder="Company Description"
+                    formControlName="description"
+                    autocomplete="disabled"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+    </section>
+  </div>
+</div>

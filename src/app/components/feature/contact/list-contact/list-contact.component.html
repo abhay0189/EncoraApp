@@ -1,0 +1,130 @@
+<section>
+  <table mat-table [dataSource]="contacts" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(element) : null"
+          [checked]="selection.isSelected(element)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="edit"
+          class="main-menu-mat-icon"
+          (click)="onEdit()"
+          >edit</mat-icon
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef>Country</th>
+      <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 30]"
+    [length]="resultsLength"
+    showFirstLastButtons
+  ></mat-paginator>
+  <!-- <mat-card *ngIf="editForm">
+    <form class="example-form" [formGroup]="contactForm" autocomplete="off">
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutAlign="flex-start"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0"
+      >
+        <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-evenly end"
+          fxLayoutGap="10px"
+          fxLayoutGap.xs="0"
+        >
+          <div fxFlex>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                placeholder="Name"
+                formControlName="name"
+                autocomplete="disabled"
+              />
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input
+                matInput
+                placeholder="Country"
+                formControlName="country"
+                autocomplete="disabled"
+              />
+            </mat-form-field>
+          </div>
+          <div fxFlex>
+            <mat-form-field>
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                placeholder="Phone"
+                formControlName="phone"
+                autocomplete="disabled"
+              />
+            </mat-form-field>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutAlign="end"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0"
+          >
+            <div>
+              <button mat-raised-button color="warn" type="button">
+                Delete
+              </button>
+            </div>
+            <div>
+              <button mat-raised-button color="primary" type="button">
+                Update
+              </button>
+            </div>
+            <div>
+              <button mat-raised-button color="primary" type="submit">
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card> -->
+</section>

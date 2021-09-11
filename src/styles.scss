@@ -1,0 +1,150 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+table {
+  width: 100%;
+}
+
+a:link .footer-bar {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.header-bar-link {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer-bar {
+  font-size: small;
+}
+.footer-bar-link {
+  text-decoration: none;
+  color: hotpink;
+}
+.pink-heart-icon {
+  color: hotpink;
+}
+.mat-icon {
+  cursor: pointer;
+}
+body {
+  margin: 0px;
+}
+app-root {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 68px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+app-admin {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+.header-bar-link {
+  background: #3f51b5;
+  padding-left: 20px;
+}
+.list-view {
+  min-height: 524px;
+}
+tr.mat-header-row,
+tr.mat-row,
+tr.mat-footer-row {
+  height: 36px !important;
+}
+.active {
+  color: hotpink;
+}
+.action-button-row {
+  display: table-cell;
+  width: 490px;
+}
+.action-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+.add-edit-view {
+  min-height: 524px;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.progress-bar-container {
+  height: 5px;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index: 11;
+  overflow: hidden;
+}
+.mt-10{
+  margin-top: 10px !important;
+}
+.w-10{
+  width: 10%;
+}
+.w-40{
+  width: 40%
+}
+.mr-10{
+  margin-right: 10px !important;
+}
+.mb-10{
+ margin-bottom: 10px;
+}
+.ml-20{
+  margin-left:20px;
+}
+.display-flex{
+  display: flex;
+}
+.w-30{
+  width:30%
+}
+.align-self-center{
+  align-self: center;
+}
+.flex-direction-column{
+  flex-direction: column;
+}
+.align-items-center{
+  align-items: center;
+}
+.justify-content-center{
+  justify-content: center;
+}
+.justify-content-end{
+ justify-content: flex-end;
+}
+.w-50{
+  width: 50% !important
+}
+//for error snackbar
+.custom-style {
+  background-color: brown;
+  color: white;
+}

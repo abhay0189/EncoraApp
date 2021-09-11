@@ -1,0 +1,42 @@
+section {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    padding-bottom: 40px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.login-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.login-full-width {
+    width: 100%;
+}
+
+.login-text {
+    text-align: center;
+}
+
+.mat-card-actions {
+    padding: 0px 0px 30px 24px;
+    float: left;
+}
+
+.mat-card-content {
+    margin: 0px 15px 0px 15px;
+}
+
+app-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

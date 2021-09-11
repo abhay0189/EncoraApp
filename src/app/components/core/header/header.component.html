@@ -1,0 +1,69 @@
+<div class="app-navbar">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        fxShow="true"
+        fxHide.gt-sm
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span
+        ><a routerLink="dashboard" mat-button class="header-bar-link"
+          >AXY Ltd</a
+        ></span
+      >
+      <span class="menu-spacer"></span>
+
+      <div fxShow="true" fxHide.lt-md class="main-menu">
+        <a routerLink="dashboard" routerLinkActive="active" mat-button>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Membership Plans"
+            class="main-menu-mat-icon"
+            >card_membership
+          </mat-icon>
+          Dashboard
+        </a>
+        <a routerLink="contact" routerLinkActive="active" mat-button>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Dashboard"
+            class="main-menu-mat-icon"
+            >people</mat-icon
+          >
+          Contacts
+        </a>
+
+        <a
+          mat-button
+          [matMenuTriggerFor]="settingMenu"
+          routerLinkActive="active"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Setting"
+            class="main-menu-mat-icon"
+            >settings</mat-icon
+          >
+          Setting
+        </a>
+        <mat-menu #settingMenu="matMenu" class="sub-menu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a routerLink="dashboard" routerLinkActive="active" mat-button
+          >Dashboard</a
+        >
+        <a routerLink="contact" mat-button>Contacts</a>
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>
