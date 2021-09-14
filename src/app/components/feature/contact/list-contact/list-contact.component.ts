@@ -1,8 +1,10 @@
 import { SelectionModel } from "@angular/cdk/collections";
-import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatTableDataSource } from "@angular/material/table";
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { first } from "rxjs/operators";
+import { AddComponent } from "src/app/components/shared/dialogs/add/add.component";
+import { DeleteComponent } from "src/app/components/shared/dialogs/delete/delete.component";
+import { EditComponent } from "src/app/components/shared/dialogs/edit/edit.component";
 import { DisplayContactColumns, Error } from "src/app/constants/constant.const";
 import { ContactResponse } from "src/app/Interfaces/common.interface";
 import { CommonService } from "src/app/services/common.service";
@@ -13,18 +15,17 @@ import { ToasterService } from "src/app/services/toaster.service";
   templateUrl: "./list-contact.component.html",
   styleUrls: ["./list-contact.component.scss"],
 })
-export class ListContactComponent implements OnInit, AfterViewInit {
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+export class ListContactComponent implements OnInit {
   displayedColumns = DisplayContactColumns;
-  contacts = new MatTableDataSource<ContactResponse>([]);
+  contacts = [];
   resultsLength = 0;
   initialSelection = [];
   allowMultiSelect = true;
   selection;
   constructor(
     private commonService: CommonService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    public dialogService: MatDialog
   ) {}
 
   ngOnInit() {
@@ -33,9 +34,6 @@ export class ListContactComponent implements OnInit, AfterViewInit {
       this.allowMultiSelect,
       this.initialSelection
     );
-  }
-  ngAfterViewInit() {
-    this.contacts.paginator = this.paginator;
   }
   getContacts() {
     this.commonService
@@ -68,9 +66,48 @@ export class ListContactComponent implements OnInit, AfterViewInit {
       ? this.selection.clear()
       : (<any>this.contacts).forEach((row) => this.selection.select(row));
   }
-  onEdit() {
-    this.toasterService.openSnackBar(
-      "We can add and update to open the data in dialog or inline as well."
-    );
+  openAddDialog() {
+    const dialogRef = this.dialogService.open(AddComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.contacts = [...this.contacts, result];
+      }
+    });
+  }
+
+  startEdit(id: number, name: string, country: string, phone: string) {
+    const dialogRef = this.dialogService.open(EditComponent, {
+      data: {
+        id: id,
+        name: name,
+        country: country,
+        phone: phone,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        let updatedData = this.contacts.filter((data) => data.id !== result.id);
+        this.contacts = [...updatedData, result];
+      }
+    });
+  }
+
+  deleteItem(name: string, country: string, phone: string) {
+    const dialogRef = this.dialogService.open(DeleteComponent, {
+      data: { name: name, country: country, phone: phone },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.contacts = this.contacts.filter(
+          (data) => data.name !== result.name
+        );
+      }
+    });
   }
 }

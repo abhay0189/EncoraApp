@@ -6,8 +6,8 @@ export const Error = {
 
 export const DisplayContactColumns: string[] = [
   "id",
-  "action",
   "name",
   "country",
   "phone",
+  "action",
 ];

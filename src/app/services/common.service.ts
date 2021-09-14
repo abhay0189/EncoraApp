@@ -11,7 +11,6 @@ import {
 })
 export class CommonService {
   baseUrl = environment.baseUrl;
-
   constructor(private http: HttpClient) {}
   getCompany(url: string) {
     return this.http.get<CompanyResponse>(`${this.baseUrl}${url}`);
